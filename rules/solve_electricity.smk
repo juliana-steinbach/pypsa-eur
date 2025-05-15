@@ -28,8 +28,7 @@ rule solve_network:
     resources:
         mem_mb=memory,
         runtime=config_provider("solving", "runtime", default="6h"),
-    shadow:
-        shadow_config
+    shadow: False
     conda:
         "../envs/environment.yaml"
     script:
@@ -62,8 +61,7 @@ rule solve_operations_network:
     resources:
         mem_mb=memory,
         runtime=config_provider("solving", "runtime", default="6h"),
-    shadow:
-        shadow_config
+    shadow: False
     conda:
         "../envs/environment.yaml"
     script:

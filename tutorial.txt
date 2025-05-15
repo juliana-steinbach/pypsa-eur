@@ -1,0 +1,29 @@
+create pypsa-eur environment from yalm
+
+(base) C:\Users\jsteinbach>activate pypsa-eur
+
+(pypsa-eur) C:\Users\jsteinbach>cd C:\Users\jsteinbach\Documents\pypsa-eur
+
+Find CDIR and replace with:
+
+CDIR = f"{cutout_dir}/" + "" if run["shared_cutouts"] else f"{RDIR}/"
+
+rules\solve_electricity.smk	Lines 31–32, 65–66
+rules\solve_myopic.smk	Lines 133–134
+rules\solve_overnight.smk	Lines 23–24
+rules\solve_perfect.smk	Lines 115–116
+
+shadow:
+    shadow_config
+
+got replaced by:
+
+shadow: False
+
+In PowerShell I created a new tmp file:
+
+(base) PS C:\Users\jsteinbach\Documents\pypsa-eur> New-Item -ItemType Directory -Path "C:\tmp"
+
+Finally:
+
+snakemake -call results/test-elec/networks/base_s_6_elec_.nc --configfile config/test/config.electricity.yaml
